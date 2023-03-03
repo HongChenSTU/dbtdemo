@@ -1,0 +1,13 @@
+version: 2
+exposures:
+ - name: BookingAmountDashboard
+   type: dashboard
+   maturity: low
+   url: https://app.snowflake.com/west-europe.azure/sv04740/#/booking-amount-closed-this-quarter-ddfnGKQOZ
+   description: Booking Amount This Quarter
+   depends_on:
+     - ref('salesforce__sales_snapshot')
+     - ref('salesforce__owner_performance')
+   owner:
+     name: Hong Chen
+     email: hong.chen@adesso.de
