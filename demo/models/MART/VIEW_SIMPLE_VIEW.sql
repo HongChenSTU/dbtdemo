@@ -1,2 +1,2 @@
 
-select * from SALESFORCE_DEV.DEV_core.salesforce__contact_enhanced limit 100;
+select * from {{ ref('salesforce__contact_enhanced') }} limit 100
