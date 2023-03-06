@@ -26,3 +26,14 @@ Happy modeling!
 
 [0m16:11:26.480595 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FED8D5ADF0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FEDB19D550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001FEDB19D760>]}
 [0m16:11:26.481595 [debug] [MainThread]: Flushing usage events
+
+
+============================== 2023-03-06 10:54:46.718602 | 15a4e7e9-949a-49a9-b945-7a5552ad9720 ==============================
+[0m10:54:46.718602 [info ] [MainThread]: Running with dbt=1.4.1
+[0m10:54:46.720211 [debug] [MainThread]: running dbt with arguments {'write_json': True, 'use_colors': True, 'printer_width': 80, 'version_check': True, 'partial_parse': True, 'static_parser': True, 'profiles_dir': '/Users/hong.chen/.dbt', 'send_anonymous_usage_stats': True, 'quiet': False, 'no_print': False, 'cache_selected_only': False, 'project_name': 'testas', 'skip_profile_setup': False, 'which': 'init', 'indirect_selection': 'eager'}
+[0m10:54:46.720448 [debug] [MainThread]: Tracking: tracking
+[0m10:54:46.791924 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e286e9b80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e286d0eb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e286d0fd0>]}
+[0m10:54:46.795794 [debug] [MainThread]: Starter project path: /Users/hong.chen/opt/anaconda3/lib/python3.9/site-packages/dbt/include/starter_project
+[0m10:54:49.081357 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e490ae760>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e490ae6d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f8e490ae9a0>]}
+[0m10:54:49.081822 [debug] [MainThread]: Flushing usage events
+[0m10:54:49.349931 [info ] [MainThread]: ctrl-c
