@@ -43,6 +43,6 @@ models:
     salesforce__contact_enhanced:
       +schema: core
   demo:
-    MART:
+    mart:
        materialized: view
        schema: MART
