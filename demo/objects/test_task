@@ -1,0 +1,43 @@
+pipe_schema: ''
+pipe_name: ''
+task_fqn: HARM_ZONE.TASK_HARM_USERMAPPING_TBL
+warehouse_name: COMPUTE_WH
+scheduled_time: "'5 minute'"
+stream_fqn: RAW_ZONE.STREAM_RAW_USERMAPPING
+target_table_fqn: "harm_zone.HARM_USERMAPPING_TBL TASK_HARM_USERMAPPING_TBL"
+dml_action: MERGE INTO
+dml_action_into_columns: " USING ( SELECT  row_data:asOfDate::date AS AS_OF_DATE
+       , f1.value:identifier::string AS IDENTIFIER
+       , f1.value:role::string AS ROLE
+       , f1.value:user::string AS USER
+       , STREAM_RAW_USERMAPPING.DSS_RECORD_SOURCE AS DSS_RECORD_SOURCE
+       , STREAM_RAW_USERMAPPING.DSS_LOAD_DATE AS DSS_LOAD_DATE
+  FROM databackbone_prod.raw_zone.STREAM_RAW_USERMAPPING STREAM_RAW_USERMAPPING
+  CROSS JOIN LATERAL FLATTEN( input => row_data:priceUserIdentifierMapping ) f1
+  WHERE 1=1
+  AND METADATA$ACTION = 'INSERT'
+  )"
+sql: "AS src
+ON         nvl(TASK_HARM_USERMAPPING_TBL.IDENTIFIER,'NVLCASE') = nvl(src.IDENTIFIER,'NVLCASE')
+AND         nvl(TASK_HARM_USERMAPPING_TBL.ROLE,'NVLCASE') = nvl(src.ROLE,'NVLCASE')
+AND         nvl(TASK_HARM_USERMAPPING_TBL.USER,'NVLCASE') = nvl(src.USER,'NVLCASE')
+  WHEN MATCHED THEN UPDATE
+    SET TASK_HARM_USERMAPPING_TBL.AS_OF_DATE = src.AS_OF_DATE
+      , TASK_HARM_USERMAPPING_TBL.DSS_RECORD_SOURCE = src.DSS_RECORD_SOURCE
+      , TASK_HARM_USERMAPPING_TBL.DSS_LOAD_DATE = src.DSS_LOAD_DATE
+    WHEN NOT MATCHED THEN INSERT
+    ( AS_OF_DATE
+    , IDENTIFIER
+    , ROLE
+    , USER
+    , DSS_RECORD_SOURCE
+    , DSS_LOAD_DATE
+    )
+    VALUES
+    ( src.AS_OF_DATE
+    , src.IDENTIFIER
+    , src.ROLE
+    , src.USER
+    , src.DSS_RECORD_SOURCE
+    , src.DSS_LOAD_DATE
+    )"
